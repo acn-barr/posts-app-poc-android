@@ -11,7 +11,7 @@ class UserRepositoryImpl @Inject constructor(
     private val userLocalDataSource: UserLocalDataSource,
 ) : UserRepository {
     companion object {
-        private const val TAG = "LoginRepositoryImpl"
+        private const val TAG = "UserRepositoryImpl"
     }
 
     override suspend fun getUser(): Flow<User?> {

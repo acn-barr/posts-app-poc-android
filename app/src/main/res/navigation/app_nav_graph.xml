@@ -2,8 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav_graph"
     app:startDestination="@id/loginFragment">
-    android:id="@+id/nav_graph">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -12,16 +12,15 @@
         tools:layout="@layout/fragment_login">
 
         <action
-            android:id="@+id/toPostsFragment"
-            app:destination="@id/postsFragment"
+            android:id="@+id/toPostsMainFragment"
+            app:destination="@id/postsMainFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
-
     </fragment>
 
     <fragment
-        android:id="@+id/postsFragment"
-        android:name="com.bjcc.posts.features.posts.PostsFragment"
-        android:label="Posts"
-        tools:layout="@layout/fragment_posts" />
+        android:id="@+id/postsMainFragment"
+        android:name="com.bjcc.posts.features.posts.presentation.PostsMainFragment"
+        android:label="PostsMain"
+        tools:layout="@layout/fragment_posts_main" />
 </navigation>

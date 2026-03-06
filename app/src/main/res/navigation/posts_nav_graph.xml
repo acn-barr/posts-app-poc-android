@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/postsFragment"
+    android:id="@+id/posts_nav_graph">
+
+    <fragment
+        android:id="@+id/postsFragment"
+        android:name="com.bjcc.posts.features.posts.presentation.PostsFragment"
+        android:label="Posts"
+        tools:layout="@layout/fragment_posts" />
+
+    <fragment
+        android:id="@+id/favoritePostsFragment"
+        android:name="com.bjcc.posts.features.posts.presentation.FavoritePostsFragment"
+        android:label="FavoritePosts"
+        tools:layout="@layout/fragment_favorite_posts" />
+</navigation>
