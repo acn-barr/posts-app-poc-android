@@ -53,7 +53,9 @@ class MainActivity : AppCompatActivity() {
 
                 loadingIndicator.visibility = View.GONE
                 navController.setGraph(navGraph, null)
-                navController.navigate(destinationId)
+
+                if (navController.currentDestination?.id != destinationId)
+                    navController.navigate(destinationId)
             }
         }
     }

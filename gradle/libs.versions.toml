@@ -15,6 +15,7 @@ constraintlayout = "2.1.4"
 ksp = "2.2.0-2.0.2"
 navigation = "2.9.7"
 hilt = "2.56.2"
+retrofit2 = "2.9.0"
 roomRuntime = "2.8.4"
 
 [libraries]
@@ -38,6 +39,8 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+com-squareup-retrofit2-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit2" }
+com-squareup-retrofit2-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit2" }
 
 
 [plugins]
