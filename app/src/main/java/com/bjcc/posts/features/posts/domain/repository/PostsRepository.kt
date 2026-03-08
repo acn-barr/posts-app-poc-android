@@ -5,4 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface PostsRepository {
     suspend fun fetchPosts() : Flow<List<Post>>
+    suspend fun deleteAllPosts()
 }

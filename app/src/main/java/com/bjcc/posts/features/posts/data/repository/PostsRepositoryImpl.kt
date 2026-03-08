@@ -30,4 +30,7 @@ class PostsRepositoryImpl @Inject constructor(
             return postsLocalDataSource.fetchPosts()
         }
     }
+
+    override suspend fun deleteAllPosts() =
+        postsLocalDataSource.deleteAllPosts()
 }

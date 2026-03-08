@@ -14,4 +14,8 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun saveUser(user: User) =
         userLocalDataSource.saveUser(user)
+
+    override suspend fun logout() =
+        userLocalDataSource.deleteUser()
+
 }

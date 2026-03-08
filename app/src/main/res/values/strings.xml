@@ -5,6 +5,7 @@
     <string name="login">Login</string>
     <string name="favorites">Favorites</string>
     <string name="posts">Posts</string>
+    <string name="logout">Logout</string>
     <string name="no_favorite_posts">No favorite posts.</string>
     <string name="no_available_posts">No available posts.</string>
 </resources>

@@ -7,4 +7,5 @@ interface FavoritePostsRepository {
     suspend fun fetchFavoritePosts(): Flow<List<FavoritePost>>
     suspend fun addFavoritePost(favoritePost: FavoritePost)
     suspend fun removeFavoritePost(favoritePostId: Int)
+    suspend fun deleteAllFavoritePosts()
 }

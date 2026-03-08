@@ -26,23 +26,16 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             userRepository.saveUser(User(_email.value, _password.value))
         }
-        _state.update {
-            it.copy(shouldNavigateToPosts = true)
-        }
     }
 
     fun onEmailUpdate(email: String) {
         _email.update { email }
-        _state.update {
-            it.copy(isLoginButtonEnabled = isEmailValid() && isPasswordValid())
-        }
+        _state.update { it.copy(isLoginButtonEnabled = isEmailValid() && isPasswordValid()) }
     }
 
     fun onPasswordUpdate(password: String) {
         _password.update { password }
-        _state.update {
-            it.copy(isLoginButtonEnabled = isEmailValid() && isPasswordValid())
-        }
+        _state.update { it.copy(isLoginButtonEnabled = isEmailValid() && isPasswordValid()) }
     }
 
     private fun isEmailValid(): Boolean {

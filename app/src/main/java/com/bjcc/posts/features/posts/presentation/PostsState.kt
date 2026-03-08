@@ -7,5 +7,5 @@ data class PostsState(
     val isLoading: Boolean = false,
     val posts: List<Post> = emptyList(),
     val favoritePosts: List<FavoritePost> = emptyList(),
-    val error: String? = null,
+    val error: String? = null
 )

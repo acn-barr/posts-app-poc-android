@@ -9,6 +9,7 @@ interface FavoritePostsLocalDataSource {
     suspend fun fetchFavoritePosts(): Flow<List<FavoritePost>>
     suspend fun addFavoritePost(favoritePost: FavoritePost)
     suspend fun removeFavoritePost(favoritePostId: Int)
+    suspend fun deleteAllFavoritePosts()
 }
 
 class FavoritePostsLocalDataSourceImpl @Inject constructor(
@@ -16,12 +17,15 @@ class FavoritePostsLocalDataSourceImpl @Inject constructor(
 ) : FavoritePostsLocalDataSource {
 
     override suspend fun fetchFavoritePosts() =
-        appDatabase.favoritePostDao().fetchFavoritePosts()
+        appDatabase.favoritePostDao().fetchAll()
 
     override suspend fun addFavoritePost(favoritePost: FavoritePost) =
-        appDatabase.favoritePostDao().insertFavoritePost(favoritePost)
+        appDatabase.favoritePostDao().insert(favoritePost)
 
     override suspend fun removeFavoritePost(favoritePostId: Int) =
-        appDatabase.favoritePostDao().removeFavoritePost(favoritePostId)
+        appDatabase.favoritePostDao().remove(favoritePostId)
+
+    override suspend fun deleteAllFavoritePosts() =
+        appDatabase.favoritePostDao().deleteAll()
 
 }

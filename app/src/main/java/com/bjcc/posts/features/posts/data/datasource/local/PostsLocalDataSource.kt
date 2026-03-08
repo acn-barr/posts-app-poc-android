@@ -16,11 +16,11 @@ class PostsLocalDataSourceImpl @Inject constructor(
 ) : PostsLocalDataSource {
 
     override suspend fun fetchPosts() =
-        appDatabase.postDao().fetchPosts()
+        appDatabase.postDao().fetchAll()
 
     override suspend fun savePosts(posts: List<Post>) =
-        appDatabase.postDao().insertPosts(posts)
+        appDatabase.postDao().insert(posts)
 
     override suspend fun deleteAllPosts() =
-        appDatabase.postDao().deleteAllPosts()
+        appDatabase.postDao().deleteAll()
 }

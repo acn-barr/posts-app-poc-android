@@ -18,4 +18,6 @@ class FavoritePostsRepositoryImpl @Inject constructor(
     override suspend fun removeFavoritePost(favoritePostId: Int) =
         favoritePostsLocalDataSource.removeFavoritePost(favoritePostId)
 
+    override suspend fun deleteAllFavoritePosts() =
+        favoritePostsLocalDataSource.deleteAllFavoritePosts()
 }

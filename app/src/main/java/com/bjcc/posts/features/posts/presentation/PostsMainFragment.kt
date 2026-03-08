@@ -2,9 +2,9 @@ package com.bjcc.posts.features.posts.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.get
 import androidx.core.view.size
@@ -29,11 +29,6 @@ class PostsMainFragment : Fragment() {
 
     private val viewModel: PostsViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +45,19 @@ class PostsMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        toolbar.inflateMenu(R.menu.posts_action_bar_menu)
+        toolbar.setOnMenuItemClickListener(object : Toolbar.OnMenuItemClickListener {
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+                when (item?.itemId) {
+                    R.id.action_logout -> {
+                        viewModel.logout()
+                        return true
+                    }
+                    else -> return false
+                }
+            }
+        })
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(

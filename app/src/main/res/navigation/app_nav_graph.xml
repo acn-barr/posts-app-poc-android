@@ -10,12 +10,6 @@
         android:name="com.bjcc.posts.features.login.presentation.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login">
-
-        <action
-            android:id="@+id/toPostsMainFragment"
-            app:destination="@id/postsMainFragment"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
