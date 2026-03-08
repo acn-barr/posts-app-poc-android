@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.Insets
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,8 +27,7 @@ class MainActivity : AppCompatActivity() {
             view.fitsSystemWindows = true
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
 
-            WindowInsetsCompat
-                .Builder()
+            WindowInsetsCompat.Builder()
                 .setInsets(
                     WindowInsetsCompat.Type.systemBars(),
                     Insets.of(systemBars.left, systemBars.top, systemBars.right, 0)
@@ -54,8 +54,16 @@ class MainActivity : AppCompatActivity() {
                 loadingIndicator.visibility = View.GONE
                 navController.setGraph(navGraph, null)
 
-                if (navController.currentDestination?.id != destinationId)
-                    navController.navigate(destinationId)
+                // Navigate only if destination is changed to avoid multiple navigation events.
+                if (navController.currentDestination?.id != destinationId) {
+                    navController.navigate(
+                        destinationId,
+                        null,
+                        NavOptions.Builder()
+                            .setEnterAnim(R.anim.fade_in)
+                            .setExitAnim(R.anim.fade_out).build()
+                    )
+                }
             }
         }
     }

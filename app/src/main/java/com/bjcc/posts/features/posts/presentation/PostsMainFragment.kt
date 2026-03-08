@@ -30,7 +30,8 @@ class PostsMainFragment : Fragment() {
     private val viewModel: PostsViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_posts_main, container, false)
@@ -60,10 +61,7 @@ class PostsMainFragment : Fragment() {
         })
 
         val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.posts_fragment,
-                R.id.favorite_posts_fragment
-            )
+            setOf(R.id.posts_fragment, R.id.favorite_posts_fragment)
         )
         bottomNav.setupWithNavController(navController)
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration)

@@ -12,10 +12,6 @@ class PostsRemoteDataSourceImpl @Inject constructor(
     private val apiService: ApiService,
 ) : PostsRemoteDataSource {
 
-    companion object {
-        private const val TAG = "PostsRemoteDataSourceImpl"
-    }
-
     override suspend fun fetchPosts(): List<Post> {
         val response = apiService.fetchPosts()
 

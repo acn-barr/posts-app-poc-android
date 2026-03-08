@@ -15,6 +15,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
+
     private val _isUserLoggedIn: MutableStateFlow<Boolean?> = MutableStateFlow(null)
     val isUserLoggedIn: LiveData<Boolean?> = _isUserLoggedIn.asLiveData()
 

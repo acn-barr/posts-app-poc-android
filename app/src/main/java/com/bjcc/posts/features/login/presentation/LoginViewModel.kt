@@ -17,6 +17,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
+
     private val _email = MutableStateFlow("")
     private val _password = MutableStateFlow("")
     private val _state = MutableStateFlow(LoginState())
@@ -38,9 +39,8 @@ class LoginViewModel @Inject constructor(
         _state.update { it.copy(isLoginButtonEnabled = isEmailValid() && isPasswordValid()) }
     }
 
-    private fun isEmailValid(): Boolean {
-        return Patterns.EMAIL_ADDRESS.matcher(_email.value).matches()
-    }
+    private fun isEmailValid() =
+        Patterns.EMAIL_ADDRESS.matcher(_email.value).matches()
 
     private fun isPasswordValid() =
         _password.value.length in 8..15

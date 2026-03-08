@@ -34,7 +34,8 @@ class LoginFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)
@@ -45,15 +46,8 @@ class LoginFragment : Fragment() {
             }
     }
 
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?
-    ) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.state.observe(viewLifecycleOwner) { state ->
-            btnLogin.isEnabled = state.isLoginButtonEnabled
-        }
 
         editEmail.doOnTextChanged { text, _, _, _ ->
             viewModel.onEmailUpdate(text.toString())
@@ -64,5 +58,9 @@ class LoginFragment : Fragment() {
         }
 
         btnLogin.setOnClickListener { viewModel.login() }
+
+        viewModel.state.observe(viewLifecycleOwner) { state ->
+            btnLogin.isEnabled = state.isLoginButtonEnabled
+        }
     }
 }

@@ -37,7 +37,8 @@ class FavoritePostsFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_favorite_posts, container, false)
@@ -65,9 +66,8 @@ class FavoritePostsFragment : Fragment() {
         )
         favoritePostsRecyclerView.adapter = favoritePostsAdapter
 
-        val swipeItemHelperCallback: ItemTouchHelper.SimpleCallback =
-            object :
-                ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+        val swipeItemHelperCallback = object :
+            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
                 override fun onMove(
                     recyclerView: RecyclerView,
                     viewHolder: RecyclerView.ViewHolder,
