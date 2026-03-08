@@ -1,7 +1,6 @@
 package com.bjcc.posts
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -46,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         val loadingIndicator: CircularProgressIndicator = findViewById(R.id.loading_indicator)
 
         viewModel.isUserLoggedIn.observe(this) { isUserLoggedIn ->
-            Log.d("xxx", "isUserLoggedIn: $isUserLoggedIn")
             if (isUserLoggedIn == null) {
                 loadingIndicator.visibility = View.VISIBLE
             } else {
