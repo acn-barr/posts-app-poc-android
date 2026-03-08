@@ -8,11 +8,9 @@ import androidx.lifecycle.viewModelScope
 import com.bjcc.posts.features.login.domain.entity.User
 import com.bjcc.posts.features.login.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,39 +22,24 @@ class LoginViewModel @Inject constructor(
     private val _state = MutableStateFlow(LoginState())
     val state: LiveData<LoginState> = _state.asLiveData()
 
-    // TODO: call this immediately after the fragment is created
-    init {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                userRepository.getUser()
-            }.collect { user ->
-                // Navigate to posts screen if a user is stored
-                if (user != null) {
-                    _state.update {
-                        it.copy(shouldNavigateToPosts = true)
-                    }
-                }
-            }
-        }
-    }
-
     fun login() {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                userRepository.save(
-                    User(_email.value, _password.value)
-                )
-            }
+            userRepository.saveUser(User(_email.value, _password.value))
+        }
+        _state.update {
+            it.copy(shouldNavigateToPosts = true)
         }
     }
 
-    fun onFieldsUpdate(
-        email: String = _email.value,
-        password: String = _email.value
-    ) {
+    fun onEmailUpdate(email: String) {
         _email.update { email }
-        _password.update { password }
+        _state.update {
+            it.copy(isLoginButtonEnabled = isEmailValid() && isPasswordValid())
+        }
+    }
 
+    fun onPasswordUpdate(password: String) {
+        _password.update { password }
         _state.update {
             it.copy(isLoginButtonEnabled = isEmailValid() && isPasswordValid())
         }

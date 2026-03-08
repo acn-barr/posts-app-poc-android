@@ -10,8 +10,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PostDao {
     @Query("Select * FROM post")
-    fun getPosts(): Flow<List<Post>>
+    fun fetchPosts(): Flow<List<Post>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun savePosts(posts: List<Post>)
+    fun insertPosts(posts: List<Post>)
+
+    @Query("DELETE FROM post")
+    fun deleteAllPosts()
 }

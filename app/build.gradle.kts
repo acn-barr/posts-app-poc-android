@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt.android) // Apply the Hilt plugin here
+    alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
 }
 
@@ -79,7 +79,7 @@ dependencies {
 
     // Hilt Dependencies
     implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler) // Use ksp for the annotation processor
+    ksp(libs.hilt.compiler)
 
     // Room database
     implementation(libs.androidx.room.runtime)

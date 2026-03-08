@@ -6,19 +6,21 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 interface PostsLocalDataSource {
-    suspend fun getPosts(): Flow<List<Post>>
+    suspend fun fetchPosts(): Flow<List<Post>>
     suspend fun savePosts(posts: List<Post>)
+    suspend fun deleteAllPosts()
 }
 
 class PostsLocalDataSourceImpl @Inject constructor(
     private val appDatabase: AppDatabase
 ) : PostsLocalDataSource {
 
-    override suspend fun getPosts(): Flow<List<Post>> {
-        return appDatabase.postDao().getPosts()
-    }
+    override suspend fun fetchPosts() =
+        appDatabase.postDao().fetchPosts()
 
-    override suspend fun savePosts(posts: List<Post>) {
-        return appDatabase.postDao().savePosts(posts)
-    }
+    override suspend fun savePosts(posts: List<Post>) =
+        appDatabase.postDao().insertPosts(posts)
+
+    override suspend fun deleteAllPosts() =
+        appDatabase.postDao().deleteAllPosts()
 }

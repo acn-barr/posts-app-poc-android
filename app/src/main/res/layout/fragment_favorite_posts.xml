@@ -3,13 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="12dp"
-    android:paddingVertical="8dp"
-    tools:context=".features.posts.presentation.FavoritePostsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".features.favoriteposts.presentation.FavoritePostsFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/posts_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/posts_recycler_view_item" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_empty_message"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_gravity="center"
-        android:text="FAVORITES" />
+        android:text="@string/no_favorite_posts"
+        android:textSize="16sp" />
 </FrameLayout>

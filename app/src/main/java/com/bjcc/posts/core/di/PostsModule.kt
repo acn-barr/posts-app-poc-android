@@ -9,10 +9,10 @@ import com.bjcc.posts.features.posts.domain.repository.PostsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ViewModelComponent
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 abstract class PostsModule {
 
     @Binds

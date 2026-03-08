@@ -12,13 +12,22 @@ class PostsRepositoryImpl @Inject constructor(
     private val postsRemoteDataSource: PostsRemoteDataSource,
     private val postsLocalDataSource: PostsLocalDataSource,
 ) : PostsRepository {
+
     companion object {
-        private const val TAG = "PostsRepositoryImpl"
+        private const val TAG = "PostsRemoteDataSourceImpl"
     }
 
-    override suspend fun getPosts(): Flow<List<Post>> {
-        val posts = postsRemoteDataSource.getPosts()
-        postsLocalDataSource.savePosts(posts)
-        return postsLocalDataSource.getPosts()
+    override suspend fun fetchPosts(): Flow<List<Post>> {
+        try {
+            val remotePosts = postsRemoteDataSource.fetchPosts()
+
+            postsLocalDataSource.deleteAllPosts()
+            postsLocalDataSource.savePosts(remotePosts)
+
+            return postsLocalDataSource.fetchPosts()
+        } catch (e: Exception) {
+            Log.e(TAG, "Exception: ${e.localizedMessage}")
+            return postsLocalDataSource.fetchPosts()
+        }
     }
 }

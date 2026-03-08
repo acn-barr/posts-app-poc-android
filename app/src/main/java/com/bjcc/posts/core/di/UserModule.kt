@@ -7,11 +7,11 @@ import com.bjcc.posts.features.login.domain.repository.UserRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ViewModelComponent
 
 @Module
-@InstallIn(SingletonComponent::class)
-abstract class LoginModule {
+@InstallIn(ViewModelComponent::class)
+abstract class UserModule {
 
     @Binds
     abstract fun bindUserLocalDataSource(

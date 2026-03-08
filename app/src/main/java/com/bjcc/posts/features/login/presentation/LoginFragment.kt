@@ -20,23 +20,19 @@ class LoginFragment : Fragment() {
     private lateinit var btnLogin: Button
     private lateinit var editEmail: TextInputEditText
     private lateinit var editPassword: TextInputEditText
-    private val viewModel: LoginViewModel by viewModels()
 
-    companion object {
-        private const val TAG = "LoginFragment"
-    }
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_login, container, false)
-
-        btnLogin = view.findViewById(R.id.btn_login)
-        editEmail = view.findViewById(R.id.edit_email)
-        editPassword = view.findViewById(R.id.edit_password)
-
-        return view
+        return inflater.inflate(R.layout.fragment_login, container, false)
+            .also {
+                btnLogin = it.findViewById(R.id.btn_login)
+                editEmail = it.findViewById(R.id.edit_email)
+                editPassword = it.findViewById(R.id.edit_password)
+            }
     }
 
     override fun onViewCreated(
@@ -46,7 +42,6 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
-            Log.d(TAG, "state: $state")
             btnLogin.isEnabled = state.isLoginButtonEnabled
 
             if (state.shouldNavigateToPosts) {
@@ -55,11 +50,11 @@ class LoginFragment : Fragment() {
         }
 
         editEmail.doOnTextChanged { text, _, _, _ ->
-            viewModel.onFieldsUpdate(email = text.toString())
+            viewModel.onEmailUpdate(text.toString())
         }
 
         editPassword.doOnTextChanged { text, _, _, _ ->
-            viewModel.onFieldsUpdate(password = text.toString())
+            viewModel.onPasswordUpdate(text.toString())
         }
 
         btnLogin.setOnClickListener { viewModel.login() }

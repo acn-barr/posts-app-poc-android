@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="black_90">#E6000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="post_item_ripple">#80E6DFF6</color>
+    <color name="screen_background_gradient_start">#64519F</color>
+    <color name="screen_background_gradient_center">#E8DDFD</color>
+    <color name="screen_background_gradient_end">#E6DFF6</color>
+    <color name="bottom_nav_item_icon_background">#D6CAEE</color>
 </resources>

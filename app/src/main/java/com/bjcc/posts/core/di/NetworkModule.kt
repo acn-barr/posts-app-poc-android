@@ -7,29 +7,33 @@ import com.bjcc.posts.core.database.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideAppDatabase(app: Application) = Room.databaseBuilder(
-        app.applicationContext,
-        AppDatabase::class.java,
-        AppDatabase.DATABASE_NAME
-    ).build()
+    fun provideOkHttpClient() = OkHttpClient.Builder()
+        .readTimeout(30, TimeUnit.SECONDS)
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
+        .build()
 
     @Singleton
     @Provides
-    fun provideRetrofit() = Retrofit.Builder()
+    fun provideRetrofit(
+        okHttpClient: OkHttpClient
+    ) = Retrofit.Builder()
         .baseUrl("https://jsonplaceholder.typicode.com/")
-        .client(OkHttpClient.Builder().build())
+        .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
